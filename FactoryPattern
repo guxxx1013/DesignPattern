@@ -1,3 +1,56 @@
+//Shape.java Create interface
 public interface Shape {
   void draw();
+}
+//Rectangle.java Create concrete classes implements the same interface
+public class Rectangle implements Shape {
+  @Override
+  public void draw() {
+    System.out.println("This Shape is Rectangle");
+  }
+}
+//Circle.java
+public class Circle implements Shape {
+  @Override
+  public void draw() {
+    System.out.println("This Shape is Circle");
+  }
+}
+//Square.java
+public class Square implements Shape {
+  @Override
+  public void draw() {
+    System.out.println("This Shape is Square");
+  }
+}
+//ShapeFactory.java Create a Factory to generate concrete class based on given information
+public class ShapeFactory {
+  public Shape getShape(String shapeType) {
+    if (shapeType == null) {
+      return null;
+    }
+    if (shapeType.equalsIgnoreCase("Rectangle")) {
+      return new Rectangle();
+    }
+    else if (shapeType.equalsIgnoreCase("Circle")) {
+      return new Circle();
+    }
+    else if (shapeType.equalsIgnoreCase("Square")) {
+      return new Square();
+    }
+    return null;
+  }
+}
+//FactoryPatternDemo.java :Use the Factory to get object of concrete class by passing an information such as type
+public class FactoryPatternDemo {
+  public static void main(String[] args) {
+    ShapeFactory shapeFactory = new ShapeFactory();
+    //
+    Shape shape1 = shapeFactory.getShape("Circle");
+    shape1.draw();
+    Shape shape2 = shapeFactory.getShape("Rectangle");
+    shape2.draw();
+    Shape shape3 = shapeFactory.getShape("Square");
+    shape3.draw();
+  }
 }
