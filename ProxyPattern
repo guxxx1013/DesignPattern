@@ -1,0 +1,61 @@
+//https://www.jianshu.com/p/93bc5aa1f887
+//http://www.runoob.com/design-pattern/proxy-pattern.html
+/*Step 1
+Create an interface.
+Image.java
+*/
+public interface Image {
+  void display();
+}
+
+/*
+Create concrete classes implementing the same interface.
+RealImage.java
+*/
+public class RealImage implements Image {
+  private String fileName;
+  public RealImage(String fileName) {
+    this.fileName = fileName;
+    loadFromDisk(fileName);
+  }
+
+  private void loadFromDisk(String fileName) {
+    System.out.println("Loading" + fileName);
+  }
+
+  @Override
+  public void display() {
+    System.out.println("Displaying" + fileName);
+  }
+}
+
+//ProxyImage.java
+public class ProxyImage implements Image {
+  private RealImage realImage;
+  private String fileName;
+  public ProxyImage(String fileName) {
+    this.fileName =fileName;
+  }
+
+  @Override
+  public void display() {
+    if(realImage == null) {
+      realImage = new RealImage(fileNmae);
+    }
+    realImage.display();
+  }
+}
+
+public class ProxyPatternDemo {
+
+   public static void main(String[] args) {
+      Image image = new ProxyImage("test_10mb.jpg");
+
+      //image will be loaded from disk
+      image.display();
+      System.out.println("");
+
+      //image will not be loaded from disk
+      image.display();
+   }
+}
