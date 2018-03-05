@@ -130,6 +130,7 @@ public class MealBuilder {
     return meal;
   }
 }
+
 //Step 7: Build Demonstrate;
 public class BuilderPatternDemo {
   public static void main(String[] args) {
@@ -146,4 +147,4 @@ public class BuilderPatternDemo {
   }
 }
 
-//Step 8: 
+//Step 8: 、
